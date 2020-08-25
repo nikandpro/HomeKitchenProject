@@ -1,12 +1,13 @@
 package com.github.nikandpro.modelDB;
 
+import com.github.nikandpro.modelDB.statuses.UserStatus;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "users")
 public class User {
     @DatabaseField(generatedId = true, columnName = "UserID")
-    private long id;
+    private int id;
     @DatabaseField(columnName = "firstName")
     private String fname;
     @DatabaseField(columnName = "lastName")
@@ -19,14 +20,16 @@ public class User {
     private String adress;
     @DatabaseField(columnName = "password")
     private String password;
+    @DatabaseField(columnName = "userStatus")
+    private UserStatus userStatus;
 
     public User() {}
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -76,5 +79,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
     }
 }
