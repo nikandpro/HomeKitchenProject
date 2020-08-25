@@ -8,10 +8,10 @@ public class Main {
 
         Javalin app = Javalin.create().start(7123);
 
-        app.get("user/get" , ctx -> UserController.userGet());
-        app.post("user/post" , ctx -> UserController.userGet());
-        app.patch("user/patch" , ctx -> UserController.userGet());
-        app.delete("user/delete" , ctx -> UserController.userGet());
+        app.get("user/get" , ctx -> UserController.getUser(ctx));
+        app.post("user/post" , ctx -> UserController.createUser(ctx));
+        app.patch("user/patch" , ctx -> UserController.updateUser(ctx));
+        app.delete("user/delete" , ctx -> UserController.deleteUser(ctx));
 
     }
 }

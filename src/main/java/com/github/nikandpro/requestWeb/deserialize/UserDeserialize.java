@@ -26,6 +26,7 @@ public class UserDeserialize extends StdDeserializer<User> {
         user.setAdress(node.get("adress").asText());
         user.setMail(node.get("mail").asText());
 
+
         return user;
     }
 }
