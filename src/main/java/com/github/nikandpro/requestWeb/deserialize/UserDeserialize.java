@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.github.nikandpro.modelDB.User;
+import com.github.nikandpro.modelDB.statuses.UserStatus;
+import com.github.nikandpro.tools.SecurityService;
 
 import java.io.IOException;
 
@@ -25,7 +27,8 @@ public class UserDeserialize extends StdDeserializer<User> {
         user.setPatronymic(node.get("patron").asText());
         user.setAdress(node.get("adress").asText());
         user.setMail(node.get("mail").asText());
-
+        user.setPassword(SecurityService.encryption(node.get("password").asText()));
+        user.setUserStatus(UserStatus.valueOf(node.get("status").asText()));
 
         return user;
     }

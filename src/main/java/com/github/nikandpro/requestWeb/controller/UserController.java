@@ -9,8 +9,11 @@ import com.github.nikandpro.tools.ObjectMapperFactory;
 import com.github.nikandpro.tools.SecurityService;
 import io.javalin.http.Context;
 
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserController {
 
@@ -24,14 +27,43 @@ public class UserController {
 
     }
 
+    public static void getAllUser(Context ctx) throws SQLException, JsonProcessingException {
+        UserStatus userStatus;
+            userStatus = SecurityService.findUser(ctx).getUserStatus();
+            if (userStatus == UserStatus.admin) {
+//                ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
+//                ctx.result(obMap.writeValueAsString(DatabaseConfiguration.userDao.queryForAll()));
+//                ctx.status(200);
+                arrayUser(ctx, DatabaseConfiguration.userDao.queryForAll());
+//                System.out.println(userStatus+" 1");
+            } else {
+                arrayUser(ctx, SecurityService.showUser(DatabaseConfiguration.userDao.queryForAll()));
+//                System.out.println(userStatus+" 2");
+            }
+
+    }
+
     public static void getUser(Context ctx) throws SQLException, JsonProcessingException {
-        if (SecurityService.authentication(ctx)) {
-            ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
-            ctx.result(obMap.writeValueAsString(SecurityService.showUser(DatabaseConfiguration.userDao.queryForAll())));
-            ctx.status(200);
-        } else {
-            ctx.status(401);
-        }
+        UserStatus userStatus;
+
+            userStatus = SecurityService.findUser(ctx).getUserStatus();
+            int idUser = Integer.parseInt(ctx.pathParam("id"));
+            if (userStatus == UserStatus.admin) {
+                User user = DatabaseConfiguration.userDao.queryForId(idUser);
+                ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
+                ctx.result(obMap.writeValueAsString(user));
+                ctx.status(200);
+            } else {
+                User user = DatabaseConfiguration.userDao.queryForId(idUser);
+                if (user.getUserStatus() == UserStatus.seller) {
+                    ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
+                    ctx.result(obMap.writeValueAsString(user));
+                    ctx.status(200);
+                } else {
+                    ctx.status(403);
+                }
+            }
+
     }
 
     public static void updateUser(Context ctx) throws IOException, SQLException {
@@ -40,7 +72,11 @@ public class UserController {
             User user;
             ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
             user = obMap.readValue(json, User.class);
-            DatabaseConfiguration.userDao.updateId(user, SecurityService.findUser(ctx).getId());
+//            int id = SecurityService.findUser(ctx).getId();
+//            System.out.println(id);
+//            System.out.println(user.toString());
+            user.setId(SecurityService.findUser(ctx).getId());
+            DatabaseConfiguration.userDao.update(user);
             ctx.status(201);
         }
     }
@@ -50,9 +86,18 @@ public class UserController {
         if (SecurityService.authentication(ctx)) {
             userStatus = SecurityService.findUser(ctx).getUserStatus();
             if (userStatus == UserStatus.admin) {
-                int id = Integer.parseInt(ctx.pathParam("id"));
-                DatabaseConfiguration.userDao.deleteById(id);
-                ctx.status(204);
+                try {
+                    User user = DatabaseConfiguration.userDao.queryForId(Integer.parseInt(ctx.queryParam("id")));
+                    System.out.println(user.getId());
+                    if (user.getUserStatus() == UserStatus.admin) {
+                        ctx.status(403);
+                    } else {
+                        DatabaseConfiguration.userDao.delete(user);
+                        ctx.status(204);
+                    }
+                } catch (RuntimeException e) {
+                    ctx.status(404);
+                }
             } else {
                 DatabaseConfiguration.userDao.delete(SecurityService.findUser(ctx));
                 ctx.status(204);
@@ -60,5 +105,11 @@ public class UserController {
         } else {
             ctx.status(401);
         }
+    }
+
+    public static void arrayUser(Context ctx, List<User> list) throws SQLException, JsonProcessingException {
+        ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
+        ctx.result(obMap.writeValueAsString(list));
+        ctx.status(200);
     }
 }

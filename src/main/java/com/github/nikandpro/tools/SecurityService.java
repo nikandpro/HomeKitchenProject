@@ -18,9 +18,16 @@ public class SecurityService {
     }
 
     public static boolean authentication(Context ctx) throws SQLException {
-        if (findUser(ctx)!=null)
-            return true;
-        else return false;
+        boolean check = false;
+        String userName = ctx.basicAuthCredentials().getUsername();
+        String userPas = ctx.basicAuthCredentials().getPassword();
+        for (User us: DatabaseConfiguration.userDao.queryForAll()) {
+            if (us.getFname().equals(userName) && BCrypt.checkpw(userPas, us.getPassword())) {
+                check = true;
+            }
+        }
+
+        return check;
     }
 
     public static UserStatus authorization(Context ctx) throws SQLException {

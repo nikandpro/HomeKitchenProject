@@ -21,7 +21,7 @@ public class DatabaseConfiguration {
 
     static {
         try {
-            connectionSource = new JdbcConnectionSource("jdbc:sqlite:C:\\Users\\User\\Desktop\\ProjectGraNei\\BD");
+            connectionSource = new JdbcConnectionSource("jdbc:sqlite:C:\\Users\\Lenovo\\Desktop\\Project\\ProjectGraNei\\DB\\granei.db");
             TableUtils.createTableIfNotExists(connectionSource, User.class);
             TableUtils.createTableIfNotExists(connectionSource, Food.class);
             TableUtils.createTableIfNotExists(connectionSource, Order.class);
