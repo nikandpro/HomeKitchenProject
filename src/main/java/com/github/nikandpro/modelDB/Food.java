@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "food")
 public class Food {
     @DatabaseField(generatedId = true, columnName = "foodID")
-    private long id;
+    private int id;
     @DatabaseField(columnName = "name")
     private String name;
     @DatabaseField(columnName = "description")
@@ -21,14 +21,16 @@ public class Food {
     private User user;
     @DatabaseField(columnName = "rating")
     private int rating;
+    @DatabaseField(columnName = "tag")
+    private Tag tag;
 
     public Food() {}
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -86,5 +88,13 @@ public class Food {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 }

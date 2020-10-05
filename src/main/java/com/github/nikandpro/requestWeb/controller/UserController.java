@@ -22,6 +22,7 @@ public class UserController {
         User user;
         ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
         user = obMap.readValue(json, User.class);
+        user.toString();
         DatabaseConfiguration.userDao.create(user);
         ctx.status(201);
 
@@ -37,8 +38,8 @@ public class UserController {
                 arrayUser(ctx, DatabaseConfiguration.userDao.queryForAll());
 //                System.out.println(userStatus+" 1");
             } else {
+                System.out.println(userStatus+" 2");
                 arrayUser(ctx, SecurityService.showUser(DatabaseConfiguration.userDao.queryForAll()));
-//                System.out.println(userStatus+" 2");
             }
 
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nikandpro.configuration.DatabaseConfiguration;
 import com.github.nikandpro.modelDB.Food;
+import com.github.nikandpro.modelDB.User;
 import com.github.nikandpro.modelDB.statuses.UserStatus;
 import com.github.nikandpro.tools.ObjectMapperFactory;
 import com.github.nikandpro.tools.SecurityService;
@@ -21,6 +22,7 @@ public class FoodController {
                 Food food;
                 ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Food.class);
                 food = obMap.readValue(json, Food.class);
+                food.setUser(SecurityService.findUser(ctx));
                 DatabaseConfiguration.foodDao.create(food);
                 ctx.status(201);
             } else {
@@ -58,8 +60,14 @@ public class FoodController {
                 ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Food.class);
                 food = obMap.readValue(json, Food.class);
                 food.setId(idFood);
-                DatabaseConfiguration.foodDao.create(food);
-                ctx.status(201);
+                User user = SecurityService.findUser(ctx);
+                if (DatabaseConfiguration.foodDao.queryForId(idFood).getUser().getId() == user.getId()) {
+                    food.setUser(user);
+                    DatabaseConfiguration.foodDao.update(food);
+                    ctx.status(201);
+                } else {
+                    ctx.status(403);
+                }
             } else {
                 ctx.status(403);
             }

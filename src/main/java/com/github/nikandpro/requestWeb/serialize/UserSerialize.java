@@ -22,7 +22,7 @@ public class UserSerialize extends StdSerializer<User> {
         jsonGenerator.writeStringField("patron", user.getPatronymic());
         jsonGenerator.writeStringField("mail", user.getMail());
         jsonGenerator.writeStringField("adress", user.getAdress());
-        jsonGenerator.writeStringField("status", user.getUserStatus().name());
+        jsonGenerator.writeStringField("rating", user.getUserStatus().name());
         jsonGenerator.writeEndObject();
     }
 }

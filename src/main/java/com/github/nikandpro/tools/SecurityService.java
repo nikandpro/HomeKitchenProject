@@ -21,7 +21,9 @@ public class SecurityService {
         boolean check = false;
         String userName = ctx.basicAuthCredentials().getUsername();
         String userPas = ctx.basicAuthCredentials().getPassword();
+        System.out.println(userName+" "+userPas);
         for (User us: DatabaseConfiguration.userDao.queryForAll()) {
+            System.out.println(us.getFname());
             if (us.getFname().equals(userName) && BCrypt.checkpw(userPas, us.getPassword())) {
                 check = true;
             }

@@ -23,6 +23,11 @@ public class FoodDeserialize extends StdDeserializer<Food> {
         JsonNode node = parser.getCodec().readTree(parser);
         Food food = new Food();
         food.setId(0);
+        food.setName(node.get("name").asText());
+        food.setDescription(node.get("description").asText());
+        food.setCookingTime(node.get("cookingTime").asText());
+        food.setHave(node.get("have").asText());
+        food.setPortions(node.get("portion").asText());
 
         return food;
     }
