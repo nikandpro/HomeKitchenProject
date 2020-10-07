@@ -29,6 +29,7 @@ public class FoodDeserialize extends StdDeserializer<Food> {
         food.setHave(node.get("have").asText());
         food.setPortions(node.get("portion").asText());
 
+
         return food;
     }
 }

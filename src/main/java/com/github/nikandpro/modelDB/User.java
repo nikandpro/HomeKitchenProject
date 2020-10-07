@@ -22,6 +22,8 @@ public class User {
     private String password;
     @DatabaseField(columnName = "userStatus")
     private UserStatus userStatus;
+    @DatabaseField(columnName = "rating")
+    private float rating;
 
     public User() {}
 
@@ -87,6 +89,14 @@ public class User {
 
     public void setUserStatus(UserStatus userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     @Override

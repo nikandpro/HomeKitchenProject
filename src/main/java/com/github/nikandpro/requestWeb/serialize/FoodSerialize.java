@@ -23,7 +23,7 @@ public class FoodSerialize extends StdSerializer<Food> {
         jsonGenerator.writeStringField("have", food.getHave());
         jsonGenerator.writeStringField("portions", food.getPortions());
         jsonGenerator.writeStringField("rating", Integer.toString(food.getRating()));
-        jsonGenerator.writeStringField("user", food.getUser().getFname()+" "+food.getUser().getLname());
+//        jsonGenerator.writeStringField("user", food.getUser().getFname()+" "+food.getUser().getLname());
         jsonGenerator.writeEndObject();
     }
 }

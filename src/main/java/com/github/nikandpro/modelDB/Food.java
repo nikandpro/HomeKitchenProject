@@ -21,8 +21,7 @@ public class Food {
     private User user;
     @DatabaseField(columnName = "rating")
     private int rating;
-    @DatabaseField(columnName = "tag")
-    private Tag tag;
+
 
     public Food() {}
 
@@ -90,11 +89,5 @@ public class Food {
         this.rating = rating;
     }
 
-    public Tag getTag() {
-        return tag;
-    }
 
-    public void setTag(Tag tag) {
-        this.tag = tag;
-    }
 }

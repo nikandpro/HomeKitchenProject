@@ -1,6 +1,7 @@
 package com.github.nikandpro.tools;
 
 import com.github.nikandpro.configuration.DatabaseConfiguration;
+import com.github.nikandpro.modelDB.Food;
 import com.github.nikandpro.modelDB.User;
 import com.github.nikandpro.modelDB.statuses.UserStatus;
 import io.javalin.http.Context;
@@ -47,6 +48,7 @@ public class SecurityService {
         }
         return user;
     }
+
 
     public static List<User> showUser(List<User> userList) {
         ArrayList<User> userArrayList = new ArrayList<User>();

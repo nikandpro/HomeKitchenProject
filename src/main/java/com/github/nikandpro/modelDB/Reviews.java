@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "reviewses")
 public class Reviews {
     @DatabaseField(generatedId = true, columnName = "reviewsID")
-    private long id;
+    private int id;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "user")
     private User user;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "food")
@@ -16,11 +16,11 @@ public class Reviews {
 
     public Reviews() {}
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

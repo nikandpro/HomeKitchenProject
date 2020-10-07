@@ -20,9 +20,11 @@ public class UserController {
     public static void createUser(Context ctx) throws IOException, SQLException {
         String json = ctx.body();
         User user;
+        System.out.println("post");
         ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
         user = obMap.readValue(json, User.class);
-        user.toString();
+        System.out.println("createUser");
+        System.out.println(user.toString());
         DatabaseConfiguration.userDao.create(user);
         ctx.status(201);
 
