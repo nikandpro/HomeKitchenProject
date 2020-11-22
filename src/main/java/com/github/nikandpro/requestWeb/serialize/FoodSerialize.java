@@ -16,14 +16,16 @@ public class FoodSerialize extends StdSerializer<Food> {
     @Override
     public void serialize(Food food, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField("id", Integer.toString(food.getId()));
+        jsonGenerator.writeNumberField("id", food.getId());
         jsonGenerator.writeStringField("name", food.getName());
         jsonGenerator.writeStringField("description", food.getDescription());
+        jsonGenerator.writeStringField("ingredients", food.getIngredients());
         jsonGenerator.writeStringField("cookingTime", food.getCookingTime());
+        jsonGenerator.writeStringField("price", food.getPrice());
         jsonGenerator.writeStringField("have", food.getHave());
         jsonGenerator.writeStringField("portions", food.getPortions());
-        jsonGenerator.writeStringField("rating", Integer.toString(food.getRating()));
-//        jsonGenerator.writeStringField("user", food.getUser().getFname()+" "+food.getUser().getLname());
+        jsonGenerator.writeNumberField("rating", food.getRating());
+        jsonGenerator.writeObjectField("user", food.getUser());
         jsonGenerator.writeEndObject();
     }
 }

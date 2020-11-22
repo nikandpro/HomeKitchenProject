@@ -17,7 +17,7 @@ public class DatabaseConfiguration {
     public static Dao<Order, Integer> orderDao;
     public static Dao<Reviews, Integer> reviewsDao;
     public static Dao<Tag, Integer> tagDao;
-
+    public static Dao<Tag_Food, Integer> tagFoodDao;
 
     static {
         try {
@@ -27,12 +27,14 @@ public class DatabaseConfiguration {
             TableUtils.createTableIfNotExists(connectionSource, Order.class);
             TableUtils.createTableIfNotExists(connectionSource, Reviews.class);
             TableUtils.createTableIfNotExists(connectionSource, Tag.class);
+            TableUtils.createTableIfNotExists(connectionSource, Tag_Food.class);
 
             userDao = DaoManager.createDao(connectionSource, User.class);
             foodDao = DaoManager.createDao(connectionSource, Food.class);
             orderDao = DaoManager.createDao(connectionSource, Order.class);
             reviewsDao = DaoManager.createDao(connectionSource, Reviews.class);
             tagDao = DaoManager.createDao(connectionSource, Tag.class);
+            tagFoodDao = DaoManager.createDao(connectionSource, Tag_Food.class);
 
         }catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nikandpro.configuration.DatabaseConfiguration;
 import com.github.nikandpro.modelDB.Food;
 import com.github.nikandpro.modelDB.User;
+import com.github.nikandpro.modelDB.statuses.TagFoodStatus;
 import com.github.nikandpro.modelDB.statuses.UserStatus;
 import com.github.nikandpro.tools.ObjectMapperFactory;
 import com.github.nikandpro.tools.SecurityService;
@@ -23,7 +24,10 @@ public class FoodController {
                 ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Food.class);
                 food = obMap.readValue(json, Food.class);
                 food.setUser(SecurityService.findUser(ctx));
+                System.out.println(food.toString());
                 DatabaseConfiguration.foodDao.create(food);
+                //recording Tag_Food in BD
+                SecurityService.chooseTagFood(ctx, food, TagFoodStatus.record);
                 ctx.status(201);
             } else {
                 ctx.status(403);
@@ -34,12 +38,15 @@ public class FoodController {
     }
 
     public static void getAllFood(Context ctx) throws SQLException, JsonProcessingException {
+        System.out.println("GetAllFood");
         ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Food.class);
+        System.out.println("obMap getAllFood");
         ctx.result(obMap.writeValueAsString(DatabaseConfiguration.foodDao.queryForAll()));
         ctx.status(200);
     }
 
     public static void getFood(Context ctx) throws SQLException, JsonProcessingException {
+        System.out.println("");
         if (SecurityService.authentication(ctx)) {
             ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Food.class);
             int idFood = Integer.parseInt(ctx.pathParam("id"));
@@ -97,4 +104,6 @@ public class FoodController {
             ctx.status(401);
         }
     }
+
+
 }

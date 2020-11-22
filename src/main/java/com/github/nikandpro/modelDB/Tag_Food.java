@@ -3,16 +3,16 @@ package com.github.nikandpro.modelDB;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "tag_user")
-public class Tag_User {
+@DatabaseTable(tableName = "tag_food")
+public class Tag_Food {
     @DatabaseField(generatedId = true, columnName = "id")
     private int id;
-    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "user")
-    private User user;
-    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "user")
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "food")
+    private Food food;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "tag")
     private Tag tag;
 
-    public Tag_User() {}
+    public Tag_Food() {}
 
     public int getId() {
         return id;
@@ -22,12 +22,12 @@ public class Tag_User {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Food getFood() {
+        return food;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setFood(Food food) {
+        this.food = food;
     }
 
     public Tag getTag() {

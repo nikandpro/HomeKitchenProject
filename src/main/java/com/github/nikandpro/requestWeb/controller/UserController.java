@@ -31,18 +31,20 @@ public class UserController {
     }
 
     public static void getAllUser(Context ctx) throws SQLException, JsonProcessingException {
+        System.out.println("check getAllUser");
         UserStatus userStatus;
-            userStatus = SecurityService.findUser(ctx).getUserStatus();
-            if (userStatus == UserStatus.admin) {
+        userStatus = SecurityService.findUser(ctx).getUserStatus();
+
+        if (userStatus == UserStatus.admin) {
 //                ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(User.class);
 //                ctx.result(obMap.writeValueAsString(DatabaseConfiguration.userDao.queryForAll()));
 //                ctx.status(200);
-                arrayUser(ctx, DatabaseConfiguration.userDao.queryForAll());
-//                System.out.println(userStatus+" 1");
-            } else {
-                System.out.println(userStatus+" 2");
-                arrayUser(ctx, SecurityService.showUser(DatabaseConfiguration.userDao.queryForAll()));
-            }
+            System.out.println("getAllUser admin");
+            arrayUser(ctx, DatabaseConfiguration.userDao.queryForAll());
+        } else {
+            System.out.println("getAllUser no admin");
+            arrayUser(ctx, SecurityService.showUser(DatabaseConfiguration.userDao.queryForAll()));
+        }
 
     }
 

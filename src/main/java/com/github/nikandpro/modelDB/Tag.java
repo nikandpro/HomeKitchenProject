@@ -7,6 +7,8 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Tag {
     @DatabaseField(generatedId = true, columnName = "tagID")
     private int id;
+//    @DatabaseField(columnName = "categories")
+//    private Categories categories;
     @DatabaseField(columnName = "title")
     private String title;
 
@@ -20,6 +22,14 @@ public class Tag {
     public void setId(int id) {
         this.id = id;
     }
+
+//    public Categories getCategories() {
+//        return categories;
+//    }
+//
+//    public void setCategories(Categories categories) {
+//        this.categories = categories;
+//    }
 
     public String getTitle() {
         return title;

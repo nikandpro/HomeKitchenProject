@@ -25,7 +25,9 @@ public class FoodDeserialize extends StdDeserializer<Food> {
         food.setId(0);
         food.setName(node.get("name").asText());
         food.setDescription(node.get("description").asText());
+        food.setIngredients(node.get("ingredients").asText());
         food.setCookingTime(node.get("cookingTime").asText());
+        food.setPrice(node.get("price").asText());
         food.setHave(node.get("have").asText());
         food.setPortions(node.get("portion").asText());
 

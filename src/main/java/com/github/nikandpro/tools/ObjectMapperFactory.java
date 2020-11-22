@@ -18,7 +18,7 @@ public class ObjectMapperFactory {
             sm.addSerializer(User.class, new UserSerialize());
             sm.addDeserializer(User.class, new UserDeserialize());
         } else if (Food.class == nameClass) {
-            sm.addSerializer(Food.class, new FoodSerialize());
+            sm.addSerializer(Food.class, new FoodSerialize()).addSerializer(User.class, new UserSerialize());
             sm.addDeserializer(Food.class, new FoodDeserialize());
         }
         return om.registerModule(sm);

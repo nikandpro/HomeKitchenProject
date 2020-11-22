@@ -34,8 +34,19 @@ public class TagController {
     }
 
     public static void getTagName(Context ctx) throws SQLException, JsonProcessingException {
+        System.out.println("Get_Tag");
         ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Tag.class);
+        System.out.println(obMap.writeValueAsString(DatabaseConfiguration.tagDao.queryForAll()));
         ctx.result(obMap.writeValueAsString(DatabaseConfiguration.tagDao.queryForAll()));
+        ctx.status(200);
+    }
+
+    public static void getTagID(Context ctx) throws SQLException, JsonProcessingException {
+        System.out.println("Get_Tag_ID");
+        int id = Integer.parseInt(ctx.pathParam("id"));
+        ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Tag.class);
+        System.out.println(obMap.writeValueAsString(DatabaseConfiguration.tagDao.queryForAll()));
+        ctx.result(obMap.writeValueAsString(DatabaseConfiguration.tagDao.queryForId(id)));
         ctx.status(200);
     }
 

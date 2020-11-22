@@ -11,10 +11,14 @@ public class Food {
     private String name;
     @DatabaseField(columnName = "description")
     private String description;
+    @DatabaseField(columnName = "ingredients")
+    private String ingredients;
     @DatabaseField(columnName = "portions")
     private String portions;
     @DatabaseField(columnName = "cookingTime")
     private String cookingTime;
+    @DatabaseField( columnName = "price")
+    private String price;
     @DatabaseField(columnName = "have")
     private String have;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "user")
@@ -45,6 +49,14 @@ public class Food {
         return description;
     }
 
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -59,6 +71,14 @@ public class Food {
 
     public String getCookingTime() {
         return cookingTime;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public void setCookingTime(String cookingTime) {
@@ -89,5 +109,19 @@ public class Food {
         this.rating = rating;
     }
 
-
+    @Override
+    public String toString() {
+        return "Food{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                ", portions='" + portions + '\'' +
+                ", cookingTime='" + cookingTime + '\'' +
+                ", price='" + price + '\'' +
+                ", have='" + have + '\'' +
+                ", user=" + user +
+                ", rating=" + rating +
+                '}';
+    }
 }

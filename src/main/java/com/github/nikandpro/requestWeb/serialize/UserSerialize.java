@@ -16,13 +16,13 @@ public class UserSerialize extends StdSerializer<User> {
     @Override
     public void serialize(User user, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField("id", Integer.toString(user.getId()));
+        jsonGenerator.writeNumberField("id", user.getId());
         jsonGenerator.writeStringField("fname", user.getFname());
         jsonGenerator.writeStringField("lname", user.getLname());
         jsonGenerator.writeStringField("patron", user.getPatronymic());
         jsonGenerator.writeStringField("mail", user.getMail());
         jsonGenerator.writeStringField("adress", user.getAdress());
-        jsonGenerator.writeStringField("rating", user.getUserStatus().name());
+        jsonGenerator.writeStringField("status", user.getUserStatus().name());
         jsonGenerator.writeEndObject();
     }
 }
