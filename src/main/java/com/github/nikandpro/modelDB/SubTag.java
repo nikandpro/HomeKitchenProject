@@ -3,13 +3,14 @@ package com.github.nikandpro.modelDB;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "tags")
+@DatabaseTable(tableName = "subTags")
 public class SubTag {
     @DatabaseField(generatedId = true, columnName = "subtagID")
     private int id;
-
     @DatabaseField(columnName = "name")
-    private String title;
+    private String name;
+    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "tag")
+    private Tag tag;
 
     public SubTag() {
     }
@@ -22,11 +23,19 @@ public class SubTag {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 }

@@ -6,9 +6,6 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.github.nikandpro.modelDB.Food;
-import com.github.nikandpro.modelDB.User;
-import com.github.nikandpro.modelDB.statuses.UserStatus;
-import com.github.nikandpro.tools.SecurityService;
 
 import java.io.IOException;
 
@@ -30,7 +27,7 @@ public class FoodDeserialize extends StdDeserializer<Food> {
         food.setPrice(node.get("price").asText());
         food.setHave(node.get("have").asText());
         food.setPortions(node.get("portion").asText());
-
+        food.setLocation(node.get("location").asText());
 
         return food;
     }

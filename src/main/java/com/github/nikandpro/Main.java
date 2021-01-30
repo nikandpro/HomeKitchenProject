@@ -1,10 +1,7 @@
 package com.github.nikandpro;
 
-import com.github.nikandpro.modelDB.Reviews;
-import com.github.nikandpro.requestWeb.controller.FoodController;
-import com.github.nikandpro.requestWeb.controller.ReviewsController;
-import com.github.nikandpro.requestWeb.controller.TagController;
-import com.github.nikandpro.requestWeb.controller.UserController;
+import com.github.nikandpro.requestWeb.controller.*;
+import com.github.nikandpro.tools.Service;
 import io.javalin.Javalin;
 
 public class Main {
@@ -26,14 +23,19 @@ public class Main {
         app.post("food/post" , ctx -> FoodController.createFood(ctx));
         app.get("food/get" , ctx -> FoodController.getAllFood(ctx));
         app.get("food/get/:id" , ctx -> FoodController.getFood(ctx));
+//        app.get("food_subtag/get", ctx -> Service.findFoodSubtag(ctx));
 //        app.patch("food/patch/:id" , ctx -> FoodController.updateFood(ctx));
         app.delete("food/delete/:id" , ctx -> FoodController.deleteFood(ctx));
 
         app.post("tag/post" , ctx -> TagController.createTag(ctx));
         app.get("tag/get" , ctx -> TagController.getTagName(ctx));
         app.get("tag/get/:id" , ctx -> TagController.getTagID(ctx));
-        app.get("tag/patch/:id" , ctx -> TagController.updateTag(ctx));
         app.patch("tag/delete/:id" , ctx -> TagController.deleteTag(ctx));
+
+        app.post("subtag/post" , ctx -> SubTagController.createTag(ctx));
+        app.get("subtag/get" , ctx -> SubTagController.getTagName(ctx));
+        app.get("subtag/get/:id" , ctx -> SubTagController.getTagID(ctx));
+        app.patch("subtag/delete/:id" , ctx -> SubTagController.deleteTag(ctx));
 
         app.post("reviews/post" , ctx -> ReviewsController.postReviews(ctx));
         app.get("reviews/get" , ctx -> ReviewsController.getReviewsAll(ctx));

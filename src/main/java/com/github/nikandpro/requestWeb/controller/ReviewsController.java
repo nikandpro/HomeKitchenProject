@@ -7,6 +7,7 @@ import com.github.nikandpro.modelDB.Reviews;
 import com.github.nikandpro.modelDB.User;
 import com.github.nikandpro.tools.ObjectMapperFactory;
 import com.github.nikandpro.tools.SecurityService;
+import com.github.nikandpro.tools.Service;
 import io.javalin.http.Context;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class ReviewsController {
             Reviews reviews;
             ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Reviews.class);
             reviews = obMap.readValue(json, Reviews.class);
-            reviews.setUser(SecurityService.findUser(ctx));
+            reviews.setUser(Service.findUser(ctx));
             reviews.setFood(DatabaseConfiguration.foodDao.queryForId(idFood));
             DatabaseConfiguration.reviewsDao.create(reviews);
             ctx.status(201);
@@ -49,7 +50,7 @@ public class ReviewsController {
             Reviews reviews;
             ObjectMapper obMap = ObjectMapperFactory.createObjectMapper(Reviews.class);
             reviews = obMap.readValue(json, Reviews.class);
-            User user = SecurityService.findUser(ctx);
+            User user = Service.findUser(ctx);
             reviews.setUser(user);
             reviews.setFood(DatabaseConfiguration.foodDao.queryForId(idFood));
             if (DatabaseConfiguration.reviewsDao.queryForId(idReviews).getUser().getId() == user.getId()) {
@@ -68,7 +69,7 @@ public class ReviewsController {
             String json = ctx.body();
             int idReviews = Integer.parseInt(ctx.pathParam("id"));
             Reviews reviews = DatabaseConfiguration.reviewsDao.queryForId(idReviews);
-            if (SecurityService.findUser(ctx).getId() == reviews.getUser().getId()) {
+            if (Service.findUser(ctx).getId() == reviews.getUser().getId()) {
                 DatabaseConfiguration.reviewsDao.deleteById(idReviews);
             } else {
                 ctx.status(403);

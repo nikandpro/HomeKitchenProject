@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.github.nikandpro.modelDB.User;
 import com.github.nikandpro.modelDB.statuses.UserStatus;
 import com.github.nikandpro.tools.SecurityService;
+import com.github.nikandpro.tools.Service;
 
 import java.io.IOException;
 
@@ -22,10 +23,10 @@ public class UserDeserialize extends StdDeserializer<User> {
         JsonNode node = parser.getCodec().readTree(parser);
         User user = new User();
         user.setId(0);
-        user.setLname(node.get("lname").asText());
-        user.setFname(node.get("fname").asText());
-        user.setPatronymic(node.get("patron").asText());
-        user.setAdress(node.get("adress").asText());
+        user.setLname("");
+        user.setFname("");
+        user.setPatronymic("");
+        user.setAdress("");
         user.setMail(node.get("mail").asText());
         user.setPassword(SecurityService.encryption(node.get("password").asText()));
         user.setUserStatus(UserStatus.valueOf(node.get("status").asText()));

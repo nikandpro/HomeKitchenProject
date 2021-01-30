@@ -10,7 +10,7 @@ public class Tag_Food {
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "food")
     private Food food;
     @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true, columnName = "tag")
-    private Tag tag;
+    private SubTag subTag;
 
     public Tag_Food() {}
 
@@ -30,11 +30,11 @@ public class Tag_Food {
         this.food = food;
     }
 
-    public Tag getTag() {
-        return tag;
+    public SubTag getSubTag() {
+        return subTag;
     }
 
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    public void setSubTag(SubTag subTag) {
+        this.subTag = subTag;
     }
 }

@@ -25,6 +25,8 @@ public class Food {
     private User user;
     @DatabaseField(columnName = "rating")
     private int rating;
+    @DatabaseField(columnName = "location")
+    private String location;
 
 
     public Food() {}
@@ -107,6 +109,14 @@ public class Food {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
