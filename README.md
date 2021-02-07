@@ -30,6 +30,8 @@
   
   * createUser
   
+  ` http://159.65.199.127:7123/food/get `
+  
   ```
    {
     "mail":" doe@mail.ru",
@@ -37,6 +39,15 @@
     "status":"customer"
    }
    ```
+   
+   * readUser
+  
+  ```
+   {
+    "mail":" doe@mail.ru",
+    "password":"password",
+    "status":"customer"
+   }
    
   
 
