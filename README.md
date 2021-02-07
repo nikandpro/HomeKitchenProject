@@ -24,9 +24,9 @@
   
   6. OrderRequest
   
-  В каждой из групп есть запросы CRUD (Create Read Update Delete) и другие дополнительные запросы
+  _В каждой из групп есть запросы CRUD (Create Read Update Delete) и другие дополнительные запросы_
   
- ###### Пример CRUD класса User:
+ **Пример CRUD класса User:**
   
   * createUser
   
