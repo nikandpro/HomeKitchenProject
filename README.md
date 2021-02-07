@@ -98,13 +98,26 @@
    Например: авторизацией, регистрацией, сортировкой, добавлением блюд и т.д.
   
    
-  ![image](https://user-images.githubusercontent.com/49100874/107143007-cb152380-695c-11eb-8588-40ea9ce136e1.png)
+   >Javalin app = Javalin.create(javalinConfig -> {
+            javalinConfig.enableDevLogging();
+            javalinConfig.enableCorsForAllOrigins();
+            javalinConfig.defaultContentType = "application/json";
+        }).start(7123);
+
+        System.out.println("check main");
+        app.post("user/post" , ctx -> UserController.createUser(ctx));
+        app.get("user/check", ctx -> UserController.checkUser(ctx));
+        app.get("user/get" , ctx -> UserController.getAllUser(ctx));
+        app.get("user/get/:id" , ctx -> UserController.getUser(ctx));
+        app.patch("user/patch" , ctx -> UserController.updateUser(ctx));
+    >    app.delete("user/delete" , ctx -> UserController.deleteUser(ctx));
+    
   
   **В данном фрагменте показан часть кода, реализации принятие запросов с клиентской части**
 
-  ![image](https://user-images.githubusercontent.com/49100874/107143097-4f67a680-695d-11eb-98d9-78fa069c8ef9.png)
+  
 
   **В следущем фрагменте показана логика создания объекта Food  и записи его в базу данных**
   
-  На данном аккаунте Github размещен код серверной части **(Backend приложения)**, фронт размещен на этом репозитории: https://github.com/nikandpro/HomeKitchen/tree/master
+  На данном аккаунте Github размещен код клиентская части **(Frontend приложения)**, фронт размещен на этом репозитории: https://github.com/nikandpro/HomeKitchen/tree/master
 
