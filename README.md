@@ -30,7 +30,7 @@
   
   * createUser
   
-  ` http://159.65.199.127:7123/food/get `
+  ` http://159.65.199.127:7123/user/post `
   
   ```
    {
@@ -42,12 +42,55 @@
    
    * readUser
   
-  ```
+  ` http://159.65.199.127:7123/user/get `
+  
+   ```
+   [
+    {
+        "id": 1,
+        "fname": "Елена",
+        "lname": "Иванова",
+        "patron": "Петровна",
+        "mail": "elena1@mail.ru",
+        "adress": "Doe street",
+        "status": "seller"
+    },
+    {
+        "id": 2,
+        "fname": "Светлана",
+        "lname": "Калинина",
+        "patron": "Юрьевна",
+        "mail": " sveta@mail.ru",
+        "adress": "Doe street",
+        "status": "seller"
+    },
+    ...
+    ]
+   ```
+   
+   * updateUser
+  
+  ` http://159.65.199.127:7123/user/patch `
+  
+   ```
    {
     "mail":" doe@mail.ru",
     "password":"password",
     "status":"customer"
    }
+   ```
+   
+   * deleteUser
+  
+  ` http://159.65.199.127:7123/user/delete `
+  
+   ```
+   {
+    "mail":" doe@mail.ru",
+    "password":"password",
+    "status":"customer"
+   }
+   ```
    
   
 
