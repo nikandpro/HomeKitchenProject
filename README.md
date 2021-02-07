@@ -14,6 +14,6 @@
   
   1. UserRequest
     
-    * UserPost
+    1. UserPost
   
 
