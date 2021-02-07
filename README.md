@@ -105,4 +105,6 @@
   ![image](https://user-images.githubusercontent.com/49100874/107143097-4f67a680-695d-11eb-98d9-78fa069c8ef9.png)
 
   **В следущем фрагменте показана логика создания объекта Food  и записи его в базу данных**
+  
+  На данном аккаунте Github размещен код серверной части **(Backend приложения)**, фронт размещен на этом репозитории: https://github.com/nikandpro/HomeKitchen/tree/master
 
