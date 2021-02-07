@@ -26,7 +26,7 @@
   
   _В каждой из групп есть запросы CRUD (Create Read Update Delete) и другие дополнительные запросы_
   
- **Пример CRUD класса User:**
+ **Пример JSON запросов CRUD класса User:**
   
   * createUser
   
