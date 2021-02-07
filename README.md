@@ -1,5 +1,8 @@
 # BACKEND HomeKitchen
 
+![Рисунок1](https://user-images.githubusercontent.com/49100874/107142618-8a1c0f80-695a-11eb-925b-4e93afa1177f.png)
+
+
 ---
 
 Серверная часть, которая принемает и отвечает на запросы с клиентской части Frontend
