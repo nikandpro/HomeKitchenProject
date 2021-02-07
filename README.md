@@ -30,4 +30,10 @@
   
   * createUser
   
+  > {
+    "mail":" doe@mail.ru",
+    "password":"password",
+    "status":"customer"
+  }
+  
 
