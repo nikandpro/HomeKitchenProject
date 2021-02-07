@@ -74,23 +74,16 @@
   
    ```
    {
-    "mail":" doe@mail.ru",
-    "password":"password",
-    "status":"customer"
+    "mail":" doe1@mail.ru",
+    "password":"password1",
+    "status":"seller"
    }
    ```
    
    * deleteUser
   
-  ` http://159.65.199.127:7123/user/delete `
+  ` http://159.65.199.127:7123/user/delete/[user_id] `
   
-   ```
-   {
-    "mail":" doe@mail.ru",
-    "password":"password",
-    "status":"customer"
-   }
-   ```
    
   
 
