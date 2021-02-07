@@ -12,7 +12,8 @@
   
   Сдесь реализованы такие запросы как:
   
-  ## UserRequest
+  1. UserRequest
+    
+    * UserPost
   
-  ### getUser
 
